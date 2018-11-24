@@ -118,7 +118,23 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("submit!");
+          this.$axios
+            .post("/api/users/register", this.registerUser)
+            .then(res => {
+              // 注册成功
+              if (res.data._id) {
+                this.$message({
+                  message: "账号注册成功!",
+                  type: "success"
+                });
+                this.$router.push("/login");
+              } else {
+                this.$message({
+                  message: res.data,
+                  type: "success"
+                });
+              }
+            });
         } else {
           console.log("error submit!!");
           return false;
