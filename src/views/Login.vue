@@ -66,11 +66,9 @@ export default {
         if (valid) {
           this.$axios.post("/api/users/login", this.loginUser).then(res => {
             // token
-            if (res.data.success) {
-              const { token } = res.data;
-              localStorage.setItem("eleToken", token);
-              this.$router.push("/index");
-            }
+            const { token } = res.data;
+            localStorage.setItem("eleToken", token);
+            this.$router.push("/index");
           });
         } else {
           console.log("error submit!!");
