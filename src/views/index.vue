@@ -2,7 +2,9 @@
     <div class="index">
         <head-nav></head-nav>
         <left-menu></left-menu>
-        <router-view></router-view>
+        <div class="rightContainer">
+          <router-view></router-view>
+        </div>
     </div>
 </template>
 
