@@ -54,7 +54,7 @@
           <el-table-column prop="remark" label="备注" align='center' width="180">
           </el-table-column>
           <el-table-column prop="operation"
-            label="操作" align='center' 
+            label="操作" align="center" 
             fixed="right" width="320">
             <template slot-scope="scope">
               <el-button type="warning" icon="edit" size="small"
@@ -68,6 +68,22 @@
             </template>
           </el-table-column>
       </el-table>
+      <!-- 分页  -->
+      <el-row>
+        <el-col :span="24">
+          <div class="pagination">
+            <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page.sync="paginations.page_index"
+              :page-sizes="paginations.page_sizes"
+              :page-size="paginations.page_size"
+              :layout="paginations.layout"
+              :total="paginations.total">
+            </el-pagination>
+          </div>           
+        </el-col>
+      </el-row>      
     </div>
     <fund-dialog :formData="formData" @update="getProfile" :dialog="dialog"></fund-dialog>
   </div>
@@ -79,7 +95,15 @@ export default {
   name: "fundList",
   data() {
     return {
+      paginations: {
+        page_index: 1, //当前位于哪页
+        total: 0, //0
+        page_size: 5, //一页显示多少条
+        page_sizes: [5, 10, 15, 20], //每页显示多少条
+        layout: "total,sizes,prev,pager,next,jumper" //翻页属性
+      },
       tableData: [],
+      allTableData: [],
       formData: {
         type: "",
         describe: "",
@@ -108,10 +132,43 @@ export default {
     this.getProfile();
   },
   methods: {
+    handleSizeChange(page_size) {
+      // 切换size
+      this.paginations.page_index = 1;
+      this.paginations.page_size = page_size;
+      this.tableData = this.allTableData.filter((item, index) => {
+        return index < this.paginations.page_size;
+      });
+    },
+    handleCurrentChange(page) {
+      // 获取当前页开始下标
+      let index = this.paginations.page_size * (page - 1);
+      // 数据的总数
+      let nums = this.paginations.page_size * page;
+      // 容器
+      let tables = [];
+      for (let i = index; i < nums; i++) {
+        if (this.allTableData[i]) {
+          tables.push(this.allTableData[i]);
+        }
+      }
+      this.tableData = tables;
+    },
     getProfile() {
       this.$axios.get("/api/profiles").then(res => {
         console.log(res);
-        this.tableData = res.data;
+        this.allTableData = res.data;
+        this.setPaginations();
+      });
+    },
+    setPaginations() {
+      // 分页属性设置
+      this.paginations.total = this.allTableData.length;
+      this.paginations.page_index = 1;
+      this.paginations.page_size = 5;
+      // 设置默认的分页数据
+      this.tableData = this.allTableData.filter((item, index) => {
+        return index < this.paginations.page_size;
       });
     },
     handleEdit(index, row) {
