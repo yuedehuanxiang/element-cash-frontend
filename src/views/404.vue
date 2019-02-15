@@ -1,7 +1,7 @@
 <template>
-    <div class="notfound">
-        <img src="../assets/404.gif" alt="">
-    </div>
+  <div class="notfound">
+    <img src="../assets/404.gif" alt="">
+  </div>
 </template>
 
 <style scoped>
@@ -9,9 +9,13 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .notfound img {
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
 }
 </style>

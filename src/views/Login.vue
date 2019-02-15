@@ -1,28 +1,28 @@
 <template>
-    <div class="login">
-        <section class="form_container">
-            <div class="manage_tip">
-             <span class="title">cs在线后台管理系统</span>
-             <el-form :model="loginUser"  :rules="rules" ref="loginForm"
-              label-width="60px" class="loginForm">
-                <el-form-item label="邮箱" prop="email">
-                  <el-input  v-model="loginUser.email" placeholder="请输入邮箱"></el-input>
-                </el-form-item>
-                <el-form-item label="密码" prop="password">
-                  <el-input type="password"  v-model="loginUser.password" placeholder="请输入密码"></el-input>
-                </el-form-item>
-                <el-form-item>
-                  <el-button type="primary" class="submit_btn" @click="submitForm('loginForm')">
-                    登录
-                  </el-button>
-                </el-form-item>
-                <div class="tiparea">
-                  <p>还没有账号？现在<router-link to='/register'>注册</router-link></p>
-                </div>
-              </el-form>
-            </div>
-        </section>
-    </div>
+  <div class="login">
+    <section class="form_container">
+      <div class="manage_tip">
+        <span class="title">后台管理系统</span>
+        <el-form :model="loginUser" :rules="rules" ref="loginForm" label-width="60px" class="loginForm">
+          <el-form-item label="邮箱" prop="email">
+            <el-input v-model="loginUser.email" placeholder="请输入邮箱"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+            <el-input type="password" v-model="loginUser.password" placeholder="请输入密码"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" class="submit_btn" @click="submitForm('loginForm')">
+              登录
+            </el-button>
+          </el-form-item>
+          <div class="tiparea">
+            <p>还没有账号？现在<router-link to='/register'>注册</router-link>
+            </p>
+          </div>
+        </el-form>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -111,7 +111,7 @@ export default {
   height: 210px;
   position: absolute;
   top: 20%;
-  left: 34%;
+  left: 36%;
   padding: 25px;
   border-radius: 5px;
   text-align: center;

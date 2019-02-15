@@ -1,33 +1,58 @@
 <template>
-    <div class="home">
-        <div class="container">
-            <h1 class="title">cs在线</h1>
-            <p class="lead">专注前端学习，前后端分离!</p>
-        </div>
+  <div class="home">
+    <div class="container">
+      <github-corner style="position: absolute; top: 0px; border: 0; right: 0;"></github-corner>
+      <panel-group></panel-group>
+      <div style="width: 100%; height: 500px;" ref="chart"></div>
     </div>
+  </div>
 </template>
+
+<script>
+import GithubCorner from "@/components/GithubCorner";
+import PanelGroup from "@/components/PanelGroup";
+import echarts from "echarts";
+require("echarts/theme/macarons");
+export default {
+  components: {
+    GithubCorner,
+    PanelGroup
+  },
+  methods: {
+    initChart() {
+      const myChart = echarts.init(this.$refs.chart, "macarons");
+      const option = {
+        title: { text: "销售额" },
+        tooltip: {},
+        legend: { data: ["销量"] },
+        xAxis: {
+          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+        },
+        yAxis: {},
+        series: [
+          {
+            name: "销量",
+            type: "bar",
+            data: [5, 20, 36, 10, 10, 20]
+          }
+        ]
+      };
+      myChart.setOption(option);
+    }
+  },
+  mounted() {
+    this.initChart();
+  }
+};
+</script>
 
 <style scoped>
 .home {
   width: 100%;
   height: 100%;
-  background: url(../assets/showcase.png) no-repeat;
-  background-size: 100% 100%;
+  background-color: rgb(240, 242, 245);
 }
 .container {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  padding-top: 100px;
-  background-color: rgba(0, 0, 0, 0.7);
-  text-align: center;
-  color: white;
-}
-.title {
-  font-size: 30px;
-}
-.lead {
-  margin-top: 50px;
-  font-size: 22px;
+  padding: 32px;
 }
 </style>

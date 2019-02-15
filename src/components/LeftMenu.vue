@@ -57,6 +57,17 @@ export default {
               name: "个人信息"
             }
           ]
+        },
+        {
+          icon: "fa fa-exclamation-circle",
+          name: "报错页面",
+          path: "404",
+          children: [
+            {
+              path: "404",
+              name: "404页面"
+            }
+          ]
         }
       ]
     };

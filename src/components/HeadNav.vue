@@ -2,8 +2,10 @@
     <header class="head-nav">
       <el-row>
         <el-col :span="6" class="logo-container">
-          <img src="../assets/logo.png" class="logo" alt="">
-          <span class="title">cs在线后台管理系统</span>
+          <!-- <img src="../assets/logo.png" class="logo" alt=""> -->
+          <transition appear appear-active-class="animated rubberBand">
+            <span class="title">后台管理系统</span>
+          </transition>
         </el-col>
         <el-col :span="6" class="user">
           <div class="userinfo">
@@ -93,6 +95,8 @@ export default {
   font-size: 22px;
   font-family: "Microsoft YaHei";
   letter-spacing: 3px;
+  display: inline-block;
+  margin-left: 30px;
 }
 
 .user {
