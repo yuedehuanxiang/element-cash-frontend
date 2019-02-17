@@ -7,6 +7,7 @@ import NotFound from "./views/404.vue";
 import Home from "./views/Home.vue";
 import InfoShow from "./views/InfoShow.vue";
 import FundList from "./views/FundList.vue";
+import Upload from "./views/Upload.vue";
 
 Vue.use(Router);
 
@@ -41,6 +42,11 @@ const router = new Router({
           path: "/fundlist",
           name: "fundlist",
           component: FundList
+        },
+        {
+          path: "/upload",
+          name: "upload",
+          component: Upload
         }
       ]
     },
@@ -54,6 +60,7 @@ const router = new Router({
       name: "login",
       component: Login
     },
+
     {
       path: "*",
       name: "/404",

@@ -1,33 +1,29 @@
 <template>
   <el-row class="menu_page">
-  <el-col :span="12">
-    <el-menu
-      class="el-menu-vertical-demo"
-      background-color="#324057"
-      text-color="#fff"
-      active-text-color="#409eff">
-      <router-link to="/home">
-        <el-menu-item index="0">
-          <i class="fa fa-margin fa-server"></i>
-          <span slot="title">首页</span>
-        </el-menu-item>
-      </router-link>
-      <template v-for="item in items">
-        <el-submenu v-if="item.children" :index="item.path" :key="item.path">
-          <template slot="title">
-            <i :class="'fa fa-margin ' + item.icon "></i>
-            <span >{{ item.name }}</span>
-          </template>
+    <el-col :span="12">
+      <el-menu class="el-menu-vertical-demo" background-color="#324057" text-color="#fff" active-text-color="#409eff">
+        <router-link to="/home">
+          <el-menu-item index="0">
+            <i class="fa fa-margin fa-server"></i>
+            <span slot="title">首页</span>
+          </el-menu-item>
+        </router-link>
+        <template v-for="item in items">
+          <el-submenu v-if="item.children" :index="item.path" :key="item.path">
+            <template slot="title">
+              <i :class="'fa fa-margin ' + item.icon "></i>
+              <span>{{ item.name }}</span>
+            </template>
             <router-link v-for="(citem, cindex) in item.children" :to="citem.path" :key="cindex">
               <el-menu-item :index="citem.path">
                 <span>{{ citem.name }}</span>
               </el-menu-item>
             </router-link>
-        </el-submenu>       
-      </template>
-    </el-menu>
-  </el-col>
-</el-row>
+          </el-submenu>
+        </template>
+      </el-menu>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -55,6 +51,17 @@ export default {
             {
               path: "infoshow",
               name: "个人信息"
+            }
+          ]
+        },
+        {
+          icon: "fa-asterisk",
+          name: "上传组件",
+          path: "upload",
+          children: [
+            {
+              path: "upload",
+              name: "上传图片"
             }
           ]
         },
